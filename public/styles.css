@@ -1,9 +1,10 @@
 body {
-  background-color: azure;
+  background-color: rgb(226, 208, 208);
+  scroll-margin-right: inherit;
 }
 
 code {
-  background-color: aliceblue;
+  background-color: whitesmoke;
   padding: 0.6rem;
   margin-left: 1rem;
 }
@@ -12,5 +13,5 @@ li {
   list-style: none;
 }
 .container {
-  background-color: beige;
+  background-color: rgb(207, 230, 230);
 }

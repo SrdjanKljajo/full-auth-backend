@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0e0e0e" />
     <meta
       name="description"
-      content="Node backend API with one to one association. PostgreSQL and sequelize ORM"
+      content="Node backend API with one to many association. PostgreSQL and sequelize ORM"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
@@ -39,107 +39,151 @@
     </div>
     <div class="container p-2 my-5">
       <h3 class="text-center mb-4">
-        Node backend API with one to meny association - postgreSQL and sequelize
-        ORM. API is posted on AWS with EC2 instances and RDS database
+        Node backend API with security config and one to meny association -
+        postgreSQL and sequelize ORM. API is posted on AWS with EC2 instances
+        and RDS database.
       </h3>
       <h5>
         The API consists of two related models. User model and Post model. Api
         can be tested using the Postman app.
       </h5>
-      <div class="text-left my-5">
-        <p>A route can be used to get a list of all teams:</p>
-        GET <code>http://18.185.73.229/api/v1/teams</code>
+      <div class="text-left mb-5">
+        <p>A route can be used to get all posts:</p>
+        GET <code>http://3.123.21.234/api/v1/posts</code>
       </div>
       <div class="text-left mb-5">
-        <p>A route can be used to get a single team:</p>
-        GET <code>http://18.185.73.229/api/v1/teams/:slug</code>
-      </div>
-      <div class="text-left mb-5">
-        <p>A route can be used to get a list of all coaches:</p>
-        GET <code>http://18.185.73.229/api/v1/coaches</code>
-      </div>
-      <div class="text-left mb-5">
-        <p>A route can be used to get a single coach:</p>
-        GET <code>http://18.185.73.229/api/v1/coaches/:slug</code>
+        <p>A route can be used to get single post:</p>
+        GET <code>http://3.123.21.234/api/v1/posts/:slug</code>
       </div>
       <div>
         <h6>
-          First you need to create all the football teams you want to belong to
-          your API, and then join the coaches. The API is constructed in such a
-          way that one team cannot have two coaches, as well as that one coach
-          cannot lead two clubs.
+          To create a post by yourself, you need to register. It is necessary to
+          enter a valid email address to which you will be sent a token to
+          activate your account. After activation, you will be assigned a user
+          role that includes certain privileges. If you have logged out in the
+          meantime, you can log in again with the password and email address you
+          entered. If you forget your password, there is a reset option.
         </h6>
       </div>
       <p>
-        When creating a team, it is necessary to input the name of the club, as
-        well as the city and country in which it is located
+        When creating account, it is necessary to input your name name,
+        password, to confirm password and email address.
       </p>
       <ul>
-        <li>teamName: ""</li>
-        <li>city: ""</li>
-        <li>country: ""</li>
+        <li>name: ""</li>
+        <li>password: ""</li>
+        <li>confirmPassword: ""</li>
+        <li>email: ""</li>
       </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post team:</p>
-        POST <code>http://18.185.73.229/api/v1/teams</code>
+        <p>A route can be used to create account:</p>
+        POST <code>http://3.123.21.234/api/v1/auth/register</code>
       </div>
       <p>
-        When creating a coach, it is necessary to input the slug of the club, as
-        well as first name and last name of coach
+        Then, we will send you activation token. To activate account you need to
+        enter token, and you will be assigned a user role.
       </p>
       <ul>
-        <li>teamSlug: ""</li>
-        <li>firstName: ""</li>
-        <li>lastName: ""</li>
+        <li>token: ""</li>
       </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post coach:</p>
-        POST <code>http://18.185.73.229/api/v1/coaches</code>
+        <p>A route can be used to activate account:</p>
+        POST <code>http://3.123.21.234/api/v1/auth/account-activation</code>
       </div>
       <h6>
-        If you want to change the data related to teams or coaches, you can do
-        so as follows:
+        It is also possible to register via Google account with the appropriate
+        setting on the frontend
       </h6>
-      <p>
-        When updating a team, it is necessary to input the new name of the club
-      </p>
-      <ul>
-        <li>teamName: ""</li>
-      </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post team:</p>
-        PUT <code>http://18.185.73.229/api/v1/teams/:slug</code>
+        <p>A route can be used to google login:</p>
+        POST <code>http://3.123.21.234/api/v1/auth/google-login</code>
       </div>
-
-      <p>
-        When updating a team coach, it is necessary to input the team slug and
-        old team coach name.
-      </p>
+      <div class="text-left mb-5">
+        <p>A route can be used to logout:</p>
+        GET <code>http://3.123.21.234/api/v1/auth/logout</code>
+      </div>
+      <h6>If you logout and want to login, you can do as follows:</h6>
       <ul>
-        <li>teamSlug: ""</li>
-        <li>oldCoachSlug: ""</li>
+        <li>password: ""</li>
+        <li>email: ""</li>
       </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post coach:</p>
-        PUT <code>http://18.185.73.229/api/v1/coaches/:slug</code>
-        <p class="mt-2">
-          If the team is currently without a coach, assign it when creating a
-          new coach. You have to keep in mind that a coach who has already been
-          assigned to a team cannot be the coach of two clubs
-        </p>
+        <p>A route can be used to login:</p>
+        POST <code>http://3.123.21.234/api/v1/auth/login</code>
       </div>
       <h6>
-        If you want to delete a football team or coach, you can do so in the
-        following way:
+        If you forgot password, first enter your email address, and we will send
+        you reset token.
       </h6>
+      <ul>
+        <li>email: ""</li>
+      </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to delete team:</p>
-        DELETE <code>http://18.185.73.229/api/v1/teams/:slug</code>
+        <p>A route can be used if forgot password:</p>
+        POST <code>http://3.123.21.234/api/v1/auth/forgot-password</code>
       </div>
+      <h6>
+        Then, enter reset token, and new password, and your password is changed
+      </h6>
+      <ul>
+        <li>resetPasswordToken: ""</li>
+        <li>newPassword: ""</li>
+        <li>confirmPassword: ""</li>
+      </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to delete coach:</p>
-        DELETE <code>http://18.185.73.229/api/v1/coaches/:slug</code>
+        <p>A route can be used to reset password:</p>
+        PUT <code>http://3.123.21.234/api/v1/auth/reset-password</code>
       </div>
+      <h6>
+        Once you are logged in and have a role user, you can create a post:
+      </h6>
+      <ul>
+        <li>userSlug: ""</li>
+        <li>title: ""</li>
+        <li>body: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to create post:</p>
+        POST <code>http://3.123.21.234/api/v1/posts</code>
+      </div>
+      <h6>You can update post:</h6>
+      <ul>
+        <li>title: ""</li>
+        <li>body: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to update post:</p>
+        PUT <code>http://3.123.21.234/api/v1/posts/:slug</code>
+      </div>
+      <h6>You can delete post:</h6>
+      <div class="text-left mb-5">
+        <p>A route can be used to delete post:</p>
+        DELETE <code>http://3.123.21.234/api/v1/posts/:slug</code>
+      </div>
+      <h6>You can a update your name or password:</h6>
+      <ul>
+        <li>name: ""</li>
+        <li>password: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to update account:</p>
+        PUT <code>http://3.123.21.234/api/v1/users/:slug</code>
+      </div>
+      <h6>You can view your account:</h6>
+      <div class="text-left mb-5">
+        <p>A route can be used to view account:</p>
+        GET <code>http://3.123.21.234/api/v1/users/show-me</code>
+      </div>
+      <h6>And you can a delete your account and all your posts:</h6>
+      <div class="text-left mb-5">
+        <p>A route can be used to delete account:</p>
+        DELETE <code>http://3.123.21.234/api/v1/users/:slug</code>
+      </div>
+      <h4 class="mb-5">
+        The API also contains a route that is related exclusively to privileged
+        roles (admin, moderator). These users can create users, change their
+        roles (only admin), accounts and posts.
+      </h4>
     </div>
     <footer class="text-center my-5">&copy; srđan kljajević - 2022</footer>
   </body>
